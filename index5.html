@@ -85,7 +85,7 @@
 
   <table id="studentTable">
     <thead>
-      <tr><th>Name</th><th>Marks</th></tr>
+      <tr><th>Name</th><th>Subject</th><th>Marks</th></tr>
     </thead>
     <tbody></tbody>
   </table>
@@ -100,6 +100,7 @@
 
   <div class="add-form">
     <input id="newName" placeholder="Student name">
+    <input id="newSubject" type="text" placeholder="eg.S.S.t">
     <input id="newMarks" type="number" placeholder="Marks (0-100)">
     <button id="addStudentBtn">Add Student</button>
   </div>
@@ -109,12 +110,12 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       let students = [
-        { name: "Divya", marks: 98 },
-        { name: "Karan", marks: 95 },
-        { name: "Priya", marks: 92 },
-        { name: "Sneha", marks: 88 },
-        { name: "Amit", marks: 85 },
-        { name: "Rahul", marks: 76 }
+         { name: "Divya", Subject:"Hindi",marks: 98 },
+          { name: "Karan", Subject:"English" ,marks: 95 },
+          { name: "Priya", Subject:"Mathmatics", marks: 92 },
+          { name: "Sneha",Subject:"Computer Science", marks: 88 },
+          { name: "Amit",Subject:"AIML" ,marks: 85 },
+          { name: "Rahul",Subject:"Applied Ai", marks: 76 }
       ];
 
       const tbody = document.querySelector('#studentTable tbody');
@@ -124,7 +125,7 @@
         tbody.innerHTML = '';
         students.forEach(s => {
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${s.name}</td><td>${s.marks}</td>`;
+          tr.innerHTML = `<td>${s.name}</td><td>${s.Subject}</td><td>${s.marks}</td>`;
           tbody.appendChild(tr);
         });
       }
@@ -157,12 +158,14 @@
       function addStudent() {
         const name = document.getElementById('newName').value.trim();
         const marks = parseInt(document.getElementById('newMarks').value, 10);
+        const Subject=document.getElementById('newSubject').value.trim();
         if (!name || Number.isNaN(marks)) {
           alert('Enter valid name and marks');
           return;
         }
-        students.push({ name, marks });
+        students.push({ name, Subject,marks });
         document.getElementById('newName').value = '';
+        document.getElementById('newSubject').value='';
         document.getElementById('newMarks').value = '';
         renderTable();
         msg.textContent = `Added ${name}`;
@@ -170,12 +173,12 @@
 
       function resetSample() {
         students = [
-          { name: "Divya", marks: 98 },
-          { name: "Karan", marks: 95 },
-          { name: "Priya", marks: 92 },
-          { name: "Sneha", marks: 88 },
-          { name: "Amit", marks: 85 },
-          { name: "Rahul", marks: 76 }
+          { name: "Divya", Subject:"Hindi",marks: 98 },
+          { name: "Karan", Subject:"English" ,marks: 95 },
+          { name: "Priya", Subject:"Mathmatics", marks: 92 },
+          { name: "Sneha",Subject:"Computer Science", marks: 88 },
+          { name: "Amit",Subject:"AIML" ,marks: 85 },
+          { name: "Rahul",Subject:"Applied Ai", marks: 76 }
         ];
         renderTable();
         msg.textContent = '';
